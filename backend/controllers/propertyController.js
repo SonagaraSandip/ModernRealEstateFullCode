@@ -52,6 +52,21 @@ exports.getPropertyById = (req, res) => {
   });
 };
 
+//get poperty count
+exports.getPropertyCount = (req, res) => {
+  const sql = "SELECT type , COUNT(*) as count FROM properties GROUP BY type";
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "DB error occured" });
+    }
+    res.status(200).json({
+      count: results,
+    });
+  });
+};
+
 //add properties
 exports.addProperty = (req, res) => {
   const { title, type, price, size_sqft, description, in_stock } = req.body;

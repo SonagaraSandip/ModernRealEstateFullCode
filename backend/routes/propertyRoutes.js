@@ -7,11 +7,13 @@ const {
   updateProperty,
   deleteProperty,
   filterProperties,
+  getPropertyCount
 } = require("../controllers/propertyController");
 const { protect, adminOnly } = require("../middleware/authMiddleware");
 const upload = require("../utils/upload");
 
 //public routes
+router.get("/count", getPropertyCount);
 router.get("/filter", filterProperties);
 router.get("/", getAllProperties);
 router.get("/:id", getPropertyById);

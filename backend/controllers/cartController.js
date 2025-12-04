@@ -62,7 +62,7 @@ exports.updateQuantity = (req, res) => {
   const cart_id = req.params.cart_id;
   const { quantity } = req.body;
 
-  const sql = `UPDATE cart SET quantity = ? WHERE id = ?`;
+  const sql = `UPDATE cart SET quantity = quantity + ? WHERE id = ?`;
 
   db.query(sql, [quantity, cart_id], (err) => {
     if (err) return res.status(500).json({ message: "Failed to update" });
